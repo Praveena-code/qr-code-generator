@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easily Generate QR Codes</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+            background: #3F5EFB;
+            background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        }
+        #qrCode {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #23a22b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #5fc362;
+        }
+
+        form {
+            margin-bottom: 20px;
+            display: inline-block;
+            text-align: left;
+            background-color: #e1b7d7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+    </style>
+    <h1>QR Code Generator</h1>
+    <form id="qrForm">
+        <label for="qrInput">Enter or paste URL : </label>
+        <input type="text" id="qrInput" required>
+        <button type="submit">Generate QR Code</button>
+    </form>
+    <div id="qrCode"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#qrForm').submit(function(event) {
+                event.preventDefault();
+                var qrText = $('#qrInput').val();
+                $('#qrCode').empty();
+                var qrcode = new QRCode(document.getElementById("qrCode"), {
+                    text: qrText,
+                    width: 128,
+                    height: 128
+                });
+            });
+        });
+    </script>
+</body>
+</html>
